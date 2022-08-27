@@ -1,0 +1,29 @@
+<form [formGroup]="form" class="login">
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Usuário" formControlName="nomeUsuario" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="E-Mail" formControlName="email" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input matInput placeholder="Telefone" formControlName="telefone" />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <input
+      matInput
+      placeholder="senha"
+      [type]="hide ? 'password' : 'text'"
+      formControlName="senha"
+    />
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="hide = !hide"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide"
+    >
+      <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+    </button>
+  </mat-form-field>
+  <button mat-button class="registrar" (click)="registrar()" [disabled]="!form.valid"> {{ buttonName }} </button>
+</form>
