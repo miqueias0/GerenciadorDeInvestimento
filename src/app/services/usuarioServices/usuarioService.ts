@@ -13,7 +13,7 @@ const service = {
   providedIn: 'root'
 })
 export class UsuarioService {
-  API_URL = baseUrl.baseUrl + service.url;
+  API_URL = (baseUrl.baseUrl.includes("/api/")  ? baseUrl.baseUrl: baseUrl.baseUrl.concat("/api/")) + service.url;
   constructor(
     private http: HttpClient,
   ) { }
