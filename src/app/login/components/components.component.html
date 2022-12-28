@@ -21,7 +21,9 @@
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
     </mat-form-field>
-
+    <button mat-button (click)="login()">
+      Login
+    </button>
     <button mat-button (click)="registrar()">
       Criar uma conta
     </button>
@@ -30,17 +32,9 @@
     <app-registrar
     buttonName="Registrar"
   ></app-registrar>
+  <button mat-button (click)="registrar()">
+    Cancelar
+  </button>
   </div>
-  <div class="divAnimate">
-    <div class="divAnimated barra1">
-    </div>
-    <div class="divAnimated barra1">
-    </div>
-    <div class="divAnimated barra1">
-    </div>
-    <div class="divAnimated barra1">
-    </div>
-    <div class="divAnimated barra1">
-    </div>
-  </div>
+  
 </div>

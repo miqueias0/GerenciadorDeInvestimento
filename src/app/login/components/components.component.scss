@@ -31,7 +31,9 @@
         margin-right: 10px;
         height: 100%;
         animation: bar1 15s ease infinite;
-        color: #000;
+        background: black;
+        min-width: 1%;
+        display: flex;
     }
     
 }

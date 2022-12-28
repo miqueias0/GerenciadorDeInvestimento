@@ -49,7 +49,7 @@ export class ComponentsComponent implements OnInit {
   }
 
   registrar(){
-    this.registrarLayout = true;
+    this.registrarLayout = !this.registrarLayout;
   }
 
 }
