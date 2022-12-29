@@ -25,7 +25,7 @@ export class UsuarioService {
 
   async manter(usuario: Usuario) {
     const endpoint = this.API_URL + '/manter';
-    return this.http.post<string>(endpoint, usuario).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', ""));
+    return this.http.post<string>(endpoint, usuario).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', "")).catch(response => response ? response.status == 200 ? localStorage.setItem('token', response.error.text) : response: response);
   }
 
   async alterarUsuario(usuario: Usuario) {
@@ -35,12 +35,12 @@ export class UsuarioService {
 
   async login(login: Login) {
     const endpoint = this.API_URL + '/login';
-    return this.http.post<string>(endpoint, login).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', ""));
+    return this.http.post<string>(endpoint, login).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', "")).catch(response => response ? response.status == 200 ? localStorage.setItem('token', response.error.text) : response: response);
   }
 
   async loginComToken() {
     const endpoint = this.API_URL + '/loginComToken';
-    return this.http.get<string>(endpoint).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', ""));
+    return this.http.get<string>(endpoint).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', "")).catch(response => response ? response.status == 200 ? localStorage.setItem('token', response.error.text) : response: response);
   }
 
 }

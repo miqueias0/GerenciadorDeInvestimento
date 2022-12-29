@@ -34,6 +34,7 @@ export class ComponentsComponent implements OnInit {
     try {
       if(localStorage.getItem('token') === null) throw new Error("Login failed");
       await this.usuarioService.loginComToken();
+      this.router.navigate(['/planilha']);
     } catch (error) {
 
     }
@@ -46,6 +47,7 @@ export class ComponentsComponent implements OnInit {
     login.usuario = usuario;
     login.manterLogado = this.form.get('manterLogado')?.value as boolean;
     await this.usuarioService.login(login);
+    this.router.navigate(['/planilha']);
   }
 
   registrar(){
