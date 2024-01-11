@@ -16,10 +16,7 @@ export class ComponentsComponent implements OnInit {
   registrarLayout = false;
 
   form = this.builder.group({
-    id: [''],
-    nomeUsuario: ['', [Validators.required]],
     email: ['', []],
-    telefone: ['', []],
     senha: ['', [Validators.required]],
     manterLogado: [false, [Validators.required]],
   });
@@ -31,13 +28,8 @@ export class ComponentsComponent implements OnInit {
   ) { }
 
   async ngOnInit(): Promise<void> {
-    try {
-      if(localStorage.getItem('token') === null) throw new Error("Login failed");
+      if(!localStorage.getItem('token')) return;
       await this.usuarioService.loginComToken();
-      this.router.navigate(['/planilha']);
-    } catch (error) {
-
-    }
   }
 
   async login() {
@@ -47,7 +39,6 @@ export class ComponentsComponent implements OnInit {
     login.usuario = usuario;
     login.manterLogado = this.form.get('manterLogado')?.value as boolean;
     await this.usuarioService.login(login);
-    this.router.navigate(['/planilha']);
   }
 
   registrar(){

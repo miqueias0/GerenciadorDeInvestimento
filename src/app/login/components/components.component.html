@@ -1,7 +1,7 @@
 <div class="divLogin">
   <form [formGroup]="form" class="login" *ngIf="!registrarLayout">
     <mat-form-field appearance="outline">
-      <input matInput placeholder="Usuário" formControlName="nomeUsuario" />
+      <input matInput placeholder="Email" formControlName="email" />
     </mat-form-field>
     <mat-form-field appearance="outline">
       <input
@@ -24,7 +24,7 @@
     <button mat-button (click)="login()">
       Login
     </button>
-    <button mat-button (click)="registrar()">
+    <button mat-button (click)="registrar()" style="white-space: break-spaces !important;">
       Criar uma conta
     </button>
   </form>
@@ -38,3 +38,4 @@
   </div>
   
 </div>
+<article></article>

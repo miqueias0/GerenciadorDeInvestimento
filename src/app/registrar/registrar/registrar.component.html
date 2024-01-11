@@ -1,9 +1,9 @@
 <form [formGroup]="form" class="login">
   <mat-form-field appearance="outline">
-    <input matInput placeholder="Usuário" formControlName="nomeUsuario" />
+    <input matInput placeholder="Nome Usuário" formControlName="nomeUsuario" required/>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <input matInput placeholder="E-Mail" formControlName="email" />
+    <input matInput placeholder="E-Mail" formControlName="email" required/>
   </mat-form-field>
   <mat-form-field appearance="outline">
     <input matInput placeholder="Telefone" formControlName="telefone" />
@@ -11,9 +11,10 @@
   <mat-form-field appearance="outline">
     <input
       matInput
-      placeholder="senha"
+      placeholder="Senha"
       [type]="hide ? 'password' : 'text'"
       formControlName="senha"
+      required
     />
     <button
       mat-icon-button
@@ -24,6 +25,12 @@
     >
       <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
     </button>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Tipo Usuário</mat-label>
+    <mat-select formControlName="tipoUsuario" required>
+        <mat-option appearance="outline" *ngFor="let tipo of tipoUsuarioLista" [value]="tipo">{{tipo}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <button mat-button class="registrar" (click)="registrar()" [disabled]="!form.valid"> {{ buttonName }} </button>
 </form>

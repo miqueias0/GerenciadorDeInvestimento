@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { IUsuario, Login, Usuario } from 'src/app/models';
+import { IToken } from 'src/app/models/autenticacaoModelo/itoken';
 import * as baseUrl from 'src/config/api';
-import { IUsuario, Login, Usuario } from '../../models/usuarioModelo';
+
 
 const service = {
   name: 'Usuario',
@@ -13,7 +15,7 @@ const service = {
   providedIn: 'root'
 })
 export class UsuarioService {
-  API_URL = (baseUrl.baseUrl.includes("/api/")  ? baseUrl.baseUrl: baseUrl.baseUrl.concat("/api/")) + service.url;
+  API_URL = (baseUrl.baseUrl.includes("/api/")  ? baseUrl.baseUrl: baseUrl.baseUrl) + service.url;
   constructor(
     private http: HttpClient,
   ) { }
@@ -25,7 +27,7 @@ export class UsuarioService {
 
   async manter(usuario: Usuario) {
     const endpoint = this.API_URL + '/manter';
-    return this.http.post<string>(endpoint, usuario).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', "")).catch(response => response ? response.status == 200 ? localStorage.setItem('token', response.error.text) : response: response);
+    return this.http.post<IToken>(endpoint, usuario).toPromise().then(response => response && response.token ? localStorage.setItem('token', response.token) : localStorage.removeItem('token'));
   }
 
   async alterarUsuario(usuario: Usuario) {
@@ -35,12 +37,12 @@ export class UsuarioService {
 
   async login(login: Login) {
     const endpoint = this.API_URL + '/login';
-    return this.http.post<string>(endpoint, login).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', "")).catch(response => response ? response.status == 200 ? localStorage.setItem('token', response.error.text) : response: response);
+    return this.http.post<IToken>(endpoint, login).toPromise().then(response =>  response && response.token ? localStorage.setItem('token', response.token) : localStorage.removeItem('token'));
   }
 
   async loginComToken() {
     const endpoint = this.API_URL + '/loginComToken';
-    return this.http.get<string>(endpoint).toPromise().then(response => response ? localStorage.setItem('token', response) : localStorage.setItem('token', "")).catch(response => response ? response.status == 200 ? localStorage.setItem('token', response.error.text) : response: response);
+    return this.http.get<IToken>(endpoint).toPromise().then(response =>  response && response.token ? localStorage.setItem('token', response.token) : localStorage.removeItem('token'));
   }
 
 }

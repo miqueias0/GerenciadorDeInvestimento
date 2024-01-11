@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { AuthService } from './auth';
 import { ComponentsComponent } from './login';
 import { MaterialModule } from './material';
-import { PlanilhaComponent } from './planilha/components';
 import { RegistrarComponent } from './registrar';
 
 
@@ -17,7 +16,6 @@ import { RegistrarComponent } from './registrar';
     AppComponent,
     ComponentsComponent,
     RegistrarComponent,
-    PlanilhaComponent,
   ],
   imports: [
     BrowserModule,

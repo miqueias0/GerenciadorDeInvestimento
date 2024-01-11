@@ -21,8 +21,10 @@ export class RegistrarComponent implements OnInit {
     email: ['', []],
     telefone: ['', []],
     senha: ['', [Validators.required]],
-    manterLogado: [false, [Validators.required]],
+    tipoUsuario: ['', [Validators.required]],
   });
+
+  tipoUsuarioLista: string[] = ['Candidato', 'Contratante'];
 
   constructor(
     private readonly usuarioService: UsuarioService,
